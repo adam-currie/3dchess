@@ -1,0 +1,5 @@
+-default uses point between both eyes, maybe later allow user to select dominant eye in options
+
+-eye distance
+-focal length/fov
+-camera position relative to screen
