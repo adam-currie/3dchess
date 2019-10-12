@@ -50,8 +50,7 @@
 
             marksStabilizer.Sample = marks;
             Marks = marksStabilizer.Sample;
-
-            Region = Rect.BoundingBoxForPoints(marks);
+            //MODIFIED: moved this to Marks setter: 'Region = Rect.BoundingBoxForPoints(marks)';
         }
 
         /// <summary>
@@ -67,7 +66,21 @@
         /// <summary>
         /// Object key points
         /// </summary>
-        public OpenCvSharp.Point[] Marks { get; protected set; }
+        public OpenCvSharp.Point[] Marks 
+        {
+            get 
+            {
+                return _marks;
+            }
+            protected set 
+            {
+                _marks = value;
+                if(value != null) {
+                    Region = Rect.BoundingBoxForPoints(value);//MODIFIED: moved this here since it wasnt being done every time marks were set
+                }
+            }
+        }
+        private OpenCvSharp.Point[] _marks;
 
         /// <summary>
         /// Sub-objects
